@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        appBarTheme: const AppBarTheme(color: Colors.yellow),
+        appBarTheme: const AppBarTheme(color: Colors.orange),
       ),
       home: const HomePage(),
     );
@@ -39,40 +39,53 @@ class _HomePageState extends State<HomePage> {
     var h = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Row & Columns"),
+        title: const Text("Button"),
       ),
-      body: Container(
-        height: h,
-        width: w,
-        color: Colors.black,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              height: 40,
-              width: 40,
-              color: Colors.red,
+            TextButton(
+              style: ButtonStyle(
+                overlayColor: MaterialStateProperty.all(Colors.orange),
+                elevation: MaterialStateProperty.all(3),
+                padding: MaterialStateProperty.all(const EdgeInsets.all(12)),
+                backgroundColor: MaterialStateProperty.all(Colors.yellow),
+              ),
+              onPressed: () {},
+              child: const Text(
+                "Press Me",
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
             ),
-            Container(
-              height: 40,
-              width: 40,
-              color: Colors.yellow,
+            const SizedBox(
+              height: 20.0,
             ),
-            Container(
-              height: 40,
-              width: 40,
-              color: Colors.green,
-            ),
-            Container(
-              height: 40,
-              width: 40,
-              color: Colors.blue,
-            ),
-            Container(
-              height: 40,
-              width: 40,
-              color: Colors.purple,
+            SizedBox(
+              height: 60,
+              width: 200,
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40),
+                    ),
+                  ),
+                ),
+                onPressed: () {},
+                child: const Text(
+                  "Press Me",
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
             ),
           ],
         ),
@@ -80,33 +93,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-/*
-
-Column(
-  mainAxisAlignment: MainAxisAlignment.start,
-  crossAxisAlignment: CrossAxisAlignment.center,
-  children: [
-    Container(height: 60, width: 60, color: Colors.red),
-    Container(height: 60, width: 60, color: Colors.blue),
-    Container(height: 60, width: 60, color: Colors.green),
-    Container(height: 60, width: 60, color: Colors.black),
-    Container(height: 60, width: 60, color: Colors.purple),
-  ]
-)
-  Wrap(
-  direction: Axis.vertical,
-  alignment: WrapAlignment.start,
-  // mainAxisAlignment: MainAxisAlignment.start,
-  // crossAxisAlignment: CrossAxisAlignment.center,
-  children: [
-    Container(height: 60, width: 60, color: Colors.red),
-    Container(height: 60, width: 60, color: Colors.blue),
-    Container(height: 60, width: 60, color: Colors.green),
-    Container(height: 60, width: 60, color: Colors.black),
-    Container(height: 60, width: 60, color: Colors.purple),
-    ],
-  ),
-
-*/
