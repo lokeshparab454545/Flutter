@@ -1,39 +1,112 @@
 import 'package:flutter/material.dart';
 
-class Container_Sized extends StatelessWidget {
-  const Container_Sized({Key? key}) : super(key: key);
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  // This widget is the root of your application.
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // backgroundColor: Colors.black,
-        title: const Text('Container and SizedBox'),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(color: Colors.yellow),
       ),
-      body: Center(
-        child: Container(
-          height: 100,
-          width: 100,
-          decoration: const BoxDecoration(
-            color: Colors.blue,
-            // shape: BoxShape.circle,
-            // borderRadius: BorderRadius.circular(20),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20),
-            ),
-            boxShadow: [
-              BoxShadow(blurRadius: 20, spreadRadius: 5, color: Colors.black)
-            ],
-          ),
-          child: Center(
-              child:
-                  Container(margin: const EdgeInsets.all(10), color: Colors.red)
-              // Text('Hello', style: TextStyle(fontSize: 20))
-              ),
-        ),
-      ),
-      // SizedBox(height: 100, width: 50, child: Text('Hello')),
+      home: const HomePage(),
     );
   }
 }
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    var w = MediaQuery.of(context).size.width;
+    var h = MediaQuery.of(context).size.height;
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Row & Columns"),
+      ),
+      body: Container(
+        height: h,
+        width: w,
+        color: Colors.black,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              height: 40,
+              width: 40,
+              color: Colors.red,
+            ),
+            Container(
+              height: 40,
+              width: 40,
+              color: Colors.yellow,
+            ),
+            Container(
+              height: 40,
+              width: 40,
+              color: Colors.green,
+            ),
+            Container(
+              height: 40,
+              width: 40,
+              color: Colors.blue,
+            ),
+            Container(
+              height: 40,
+              width: 40,
+              color: Colors.purple,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+/*
+
+Column(
+  mainAxisAlignment: MainAxisAlignment.start,
+  crossAxisAlignment: CrossAxisAlignment.center,
+  children: [
+    Container(height: 60, width: 60, color: Colors.red),
+    Container(height: 60, width: 60, color: Colors.blue),
+    Container(height: 60, width: 60, color: Colors.green),
+    Container(height: 60, width: 60, color: Colors.black),
+    Container(height: 60, width: 60, color: Colors.purple),
+  ]
+)
+  Wrap(
+  direction: Axis.vertical,
+  alignment: WrapAlignment.start,
+  // mainAxisAlignment: MainAxisAlignment.start,
+  // crossAxisAlignment: CrossAxisAlignment.center,
+  children: [
+    Container(height: 60, width: 60, color: Colors.red),
+    Container(height: 60, width: 60, color: Colors.blue),
+    Container(height: 60, width: 60, color: Colors.green),
+    Container(height: 60, width: 60, color: Colors.black),
+    Container(height: 60, width: 60, color: Colors.purple),
+    ],
+  ),
+
+*/
