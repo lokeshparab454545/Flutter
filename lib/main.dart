@@ -35,59 +35,33 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    var w = MediaQuery.of(context).size.width;
-    var h = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Button"),
+        title: const Text("Grid"),
+        backgroundColor: Colors.red,
+        elevation: 3,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextButton(
-              style: ButtonStyle(
-                overlayColor: MaterialStateProperty.all(Colors.orange),
-                elevation: MaterialStateProperty.all(3),
-                padding: MaterialStateProperty.all(const EdgeInsets.all(12)),
-                backgroundColor: MaterialStateProperty.all(Colors.yellow),
-              ),
-              onPressed: () {},
-              child: const Text(
-                "Press Me",
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+      body: Container(
+        child: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              final snackbar = SnackBar(
+                action: SnackBarAction(
+                  label: 'Undo',
+                  textColor: Colors.blue,
+                  onPressed: () {},
                 ),
-              ),
-            ),
-            const SizedBox(
-              height: 20.0,
-            ),
-            SizedBox(
-              height: 60,
-              width: 200,
-              child: ElevatedButton(
-                style: ButtonStyle(
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40),
-                    ),
-                  ),
-                ),
-                onPressed: () {},
-                child: const Text(
-                  "Press Me",
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ),
-          ],
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                behavior: SnackBarBehavior.floating,
+                duration: const Duration(milliseconds: 3000),
+                // backgroundColor: Colors.red,
+                content: const Text("This is an Error"),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackbar);
+            },
+            child: const Text("Show Snackbar"),
+          ),
         ),
       ),
     );
