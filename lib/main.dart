@@ -33,36 +33,47 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<String> fruits = ['Orange', 'Apple', 'Mango', 'Grapes', 'Banana'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Grid"),
+        title: const Text("Dismisible Widget"),
         backgroundColor: Colors.red,
         elevation: 3,
       ),
-      body: Container(
-        child: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              final snackbar = SnackBar(
-                action: SnackBarAction(
-                  label: 'Undo',
-                  textColor: Colors.blue,
-                  onPressed: () {},
-                ),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                behavior: SnackBarBehavior.floating,
-                duration: const Duration(milliseconds: 3000),
-                // backgroundColor: Colors.red,
-                content: const Text("This is an Error"),
-              );
-              ScaffoldMessenger.of(context).showSnackBar(snackbar);
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          final fruit = fruits[index];
+          return Dismissible(
+            key: Key(fruit),
+            onDismissed: (direction) {
+              if (direction == DismissDirection.startToEnd) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(fruits[index]),
+                    backgroundColor: Colors.red,
+                  ),
+                );
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(fruits[index]),
+                    backgroundColor: Colors.green,
+                  ),
+                );
+              }
             },
-            child: const Text("Show Snackbar"),
-          ),
-        ),
+            background: Container(color: Colors.red),
+            secondaryBackground: Container(color: Colors.green),
+            child: Card(
+              child: ListTile(
+                title: Text(fruits[index]),
+              ),
+            ),
+          );
+        },
+        itemCount: fruits.length,
       ),
     );
   }
